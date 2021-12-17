@@ -2,9 +2,6 @@
 	import { fetchResource } from '../fetchResource';
 	import { markdownToHtml } from '../markdownToHtml';
 
-	let loading = false;
-	let todos = '';
-
 	let loadResult;
 
 	// let pageTitle = 'Not set';
