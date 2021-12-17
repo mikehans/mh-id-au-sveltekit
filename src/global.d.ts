@@ -21,7 +21,7 @@ interface Menu {
 }
 
 interface PageData {
-    SEO: ?object,
+    SEO: ?Array<Record<string, string>>,
     created_at: string,
     id: number,
     menus: ?Array<Menu>,
