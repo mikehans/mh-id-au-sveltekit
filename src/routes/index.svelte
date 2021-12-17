@@ -1,0 +1,42 @@
+<script lang="ts" context="module">
+	import { fetchResource } from '../fetchResource';
+	import { markdownToHtml } from '../markdownToHtml';
+	
+	let loadResult;
+
+	const homePageUrl = `${import.meta.env.VITE_API_URL}/home-page`;
+
+	export async function load({fetch, page}){
+		loadResult = await fetchResource(homePageUrl, fetch);
+
+		const parsedContent = await markdownToHtml(loadResult.pageContent.content);
+
+		return {
+			props: {
+				menus: loadResult.menus,
+				content: parsedContent,
+				title: loadResult.pageContent.title
+			}
+		}
+	}
+</script>
+
+<script lang="ts">
+	import { mainMenu } from '../stores';
+
+	export let title;
+	export let content;
+	export let menus = [];
+
+	let siteTitle = `Mike Hansford | ${title}`;
+
+	const main = menus.filter(m => m.menuName === 'main');
+
+	mainMenu.set(main[0].menu.items);
+</script>
+
+<svelte:head>
+	<title>{siteTitle}</title>
+</svelte:head>
+
+{@html content}
