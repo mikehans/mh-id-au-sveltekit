@@ -2,7 +2,7 @@
 	import { fetchResource } from '../fetchResource';
 	import { markdownToHtml } from '../markdownToHtml';
 	
-	let loadResult;
+	let loadResult: PageData;
 
 	const homePageUrl = `${import.meta.env.VITE_API_URL}/home-page`;
 
@@ -10,6 +10,7 @@
 		loadResult = await fetchResource(homePageUrl, fetch);
 
 		const parsedContent = await markdownToHtml(loadResult.pageContent.content);
+		console.log(`loadResult`, loadResult);
 
 		return {
 			props: {

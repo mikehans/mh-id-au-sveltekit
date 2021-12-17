@@ -1,4 +1,4 @@
-export async function fetchResource(resourceUrl, svelteFetch) {
+export async function fetchResource(resourceUrl: string, svelteFetch: SvelteFetch) : Promise<PageData | any> {
 	const authUrl = `${import.meta.env.VITE_API_URL}/auth/local`;
 
 	try {
@@ -29,7 +29,7 @@ export async function fetchResource(resourceUrl, svelteFetch) {
 			if (!dataResult.ok) {
 				throw new Error('Failed to get resource');
 			} else {
-				const data = await dataResult.json();
+				const data: PageData = await dataResult.json();
 
 				console.log(`data 1`, data);
 
