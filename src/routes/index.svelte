@@ -32,7 +32,9 @@
 
 	const main = menus.filter(m => m.menuName === 'main');
 
-	mainMenu.set(main[0].menu.items);
+	if (main.length > 0){
+		mainMenu.set(main[0].menu.items);
+	}
 </script>
 
 <svelte:head>

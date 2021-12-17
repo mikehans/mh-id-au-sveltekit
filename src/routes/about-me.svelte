@@ -13,7 +13,7 @@
 
 	console.log(`aboutMeResourceUrl`, aboutMeResourceUrl);
 
-	export async function load({fetch, page, session, stuff}){
+	export async function load({ fetch, page, session, stuff }) {
 		loadResult = await fetchResource(aboutMeResourceUrl, fetch);
 		const parsedContent = await markdownToHtml(loadResult.pageContent.content);
 
@@ -23,9 +23,8 @@
 				title: loadResult.pageContent.title,
 				menus: loadResult.menus
 			}
-		}
+		};
 	}
-
 </script>
 
 <script>
@@ -37,9 +36,11 @@
 
 	let siteTitle = `Mike Hansford | ${title}`;
 
-	const main = menus.filter(m => m.menuName === 'main');
+	const main = menus.filter((m) => m.menuName === 'alt-main');
 
-	mainMenu.set(main[0].menu.items);
+	if (main.length > 0) {
+		mainMenu.set(main[0].menu.items);
+	}
 </script>
 
 <svelte:head>
