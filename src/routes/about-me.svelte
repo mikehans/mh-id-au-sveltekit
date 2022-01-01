@@ -1,6 +1,11 @@
 <script context="module">
-	import { fetchResource } from '../fetchResource';
-	import { markdownToHtml } from '../markdownToHtml';
+	import { fetchResource } from '$lib/fetchResource';
+	import { markdownToHtml } from '$lib/markdownToHtml';
+	import {browser, dev} from '$app/env';
+
+	export const hydrate = dev;
+	// export const router = browser;
+	export const prerender = true;
 
 	let loadResult;
 

@@ -1,6 +1,7 @@
 <script lang="ts" context="module">
-	import { fetchResource } from '../fetchResource';
-	import { markdownToHtml } from '../markdownToHtml';
+	export const prerender = true;
+	import { fetchResource } from '$lib/fetchResource';
+	import { markdownToHtml } from '$lib/markdownToHtml';
 	
 	let loadResult: PageData;
 

@@ -31,7 +31,7 @@ export async function fetchResource(resourceUrl: string, svelteFetch: SvelteFetc
 			} else {
 				const data: PageData = await dataResult.json();
 
-				console.log(`data 1`, data);
+				// console.log(`data 1`, data);
 
                 return data;
 			}

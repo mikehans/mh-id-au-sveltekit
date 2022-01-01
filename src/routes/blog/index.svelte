@@ -1,5 +1,5 @@
 <script context="module">
-    import { fetchResource } from "../../fetchResource";
+    import { fetchResource } from '$lib/fetchResource';
 
     const BLOG_API_URL = `${import.meta.env.VITE_API_URL}/posts`;
 
@@ -25,7 +25,9 @@
     <title>Blog</title>
 </svelte:head>
 
-<h1>Index page for blog</h1>
+<h1>Technical Blog</h1>
+
+I blog mostly about JavaScript, dotNET and Microsoft 365.
 
 <ul>
     {#each posts as post}
