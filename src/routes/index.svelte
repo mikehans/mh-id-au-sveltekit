@@ -26,8 +26,8 @@
 <script lang="ts">
 	import { mainMenu } from '../stores';
 
-	export let title;
-	export let content;
+	export let title: string;
+	export let content: string;
 	export let menus = [];
 
 	let siteTitle = `Mike Hansford | ${title}`;
