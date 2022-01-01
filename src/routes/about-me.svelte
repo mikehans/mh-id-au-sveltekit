@@ -3,7 +3,7 @@
 	import { markdownToHtml } from '$lib/markdownToHtml';
 	import {browser, dev} from '$app/env';
 
-	export const hydrate = dev;
+	// export const hydrate = dev;
 	// export const router = browser;
 	export const prerender = true;
 
@@ -13,10 +13,11 @@
 	/** @type {import('@sveltejs/kit').Load} */
 	const aboutMeResourceUrl = `${import.meta.env.VITE_API_URL}/about-me`;
 
-	console.log(`aboutMeResourceUrl`, aboutMeResourceUrl);
+	// console.log(`aboutMeResourceUrl`, aboutMeResourceUrl);
 
 	export async function load({ fetch }) {
 		loadResult = await fetchResource(aboutMeResourceUrl, fetch);
+		console.log(`loadResult`, loadResult)
 		const parsedContent = await markdownToHtml(loadResult.pageContent.content);
 
 		return {
