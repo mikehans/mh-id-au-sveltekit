@@ -8,14 +8,15 @@
 
 	export async function load({fetch, page}){
 		loadResult = await fetchResource(homePageUrl, fetch);
+		// console.log(`loadResult`, loadResult);
 
 		const parsedContent = await markdownToHtml(loadResult.pageContent.content);
-		console.log(`loadResult`, loadResult);
+		// console.log(`parsedContent`, parsedContent);
 
 		return {
 			props: {
 				menus: loadResult.menus,
-				content: parsedContent,
+				content: parsedContent.value,
 				title: loadResult.pageContent.title
 			}
 		}
