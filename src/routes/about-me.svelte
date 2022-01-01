@@ -15,7 +15,7 @@
 
 	console.log(`aboutMeResourceUrl`, aboutMeResourceUrl);
 
-	export async function load({ fetch, page, session, stuff }) {
+	export async function load({ fetch }) {
 		loadResult = await fetchResource(aboutMeResourceUrl, fetch);
 		const parsedContent = await markdownToHtml(loadResult.pageContent.content);
 

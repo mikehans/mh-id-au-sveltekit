@@ -2,8 +2,8 @@
 	import { fetchResource } from '$lib/fetchResource';
     import { markdownToHtml } from '$lib/markdownToHtml';
 
-	export async function load({ page, fetch }) {
-		const POST_URL = `${import.meta.env.VITE_API_URL}/posts/${page.params.slug}`;
+	export async function load({ params, fetch }) {
+		const POST_URL = `${import.meta.env.VITE_API_URL}/posts/${params.slug}`;
 
 		const response = await fetchResource(POST_URL, fetch);
 

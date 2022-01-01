@@ -7,7 +7,7 @@
 
 	const homePageUrl = `${import.meta.env.VITE_API_URL}/home-page`;
 
-	export async function load({fetch, page}){
+	export async function load({fetch}){
 		loadResult = await fetchResource(homePageUrl, fetch);
 		// console.log(`loadResult`, loadResult);
 

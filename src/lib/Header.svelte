@@ -7,7 +7,7 @@
 	<nav>
 		<ul>
 			{#each $mainMenu as item}
-				<li class:active = {$page.path === item.slug}><a href={item.slug}>{item.label}</a></li>
+				<li class:active = {$page.url.pathname === item.slug}><a href={item.slug}>{item.label}</a></li>
 			{/each}
 		</ul>
 	</nav>
