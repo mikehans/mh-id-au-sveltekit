@@ -1,13 +1,24 @@
 <script lang="ts">
 	import { mainMenu } from '../stores';
-
-	console.log(`mainMenu`, $mainMenu);
 </script>
 
 <header>
     <nav>
+        <ul>
         {#each $mainMenu as item}
-            <a href={item.slug}>{item.label}</a> &nbsp;&nbsp;
+           <li><a href={item.slug}>{item.label}</a> </li>
         {/each}
+    </ul>
     </nav>
 </header>
+
+<style>
+    ul{
+        padding-left: 0;
+    }
+    ul > li {
+        list-style: none;
+        display: inline;
+        padding-right: 10px;
+    }
+</style>
