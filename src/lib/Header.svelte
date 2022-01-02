@@ -4,7 +4,8 @@
 </script>
 
 <header>
-	<nav>
+	<nav class="container">
+		<a class="site-title" href="/" alt="Go to home page">Site Title</a>
 		<ul>
 			{#each $mainMenu as item}
 				<li class:active = {$page.url.pathname === item.slug}><a href={item.slug}>{item.label}</a></li>
@@ -14,6 +15,26 @@
 </header>
 
 <style>
+	header {
+		background-color: #2e3141;
+		color: white;
+		height: 4rem;
+	}
+	nav{
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		height: 100%;
+	}
+
+	.site-title{
+		font-size: 2rem;
+		text-decoration: none;
+	}
+
+	.site-title:visited {
+		color: inherit;
+	}
 	ul {
 		padding-left: 0;
 	}
@@ -21,14 +42,16 @@
 		list-style: none;
 		display: inline;
 		padding-right: 10px; 
+		font-family: 'Raleway', sans-serif;
 	}
 
     li > a {
         text-decoration: none;  
+		color: white;
     }
 
     li > a:hover {
-        background-color: bisque;
+		border-bottom: 2px double white;
     }
 
     li > a:visited {
