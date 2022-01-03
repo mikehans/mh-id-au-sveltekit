@@ -1,6 +1,6 @@
 import { browser } from '$app/env';
 
-const key = `${import.meta.env.VITE_SESSIONSTORAGE_TOKEN}`;
+const key = `${import.meta.env.VITE_JWT_STORAGE_KEY}`;
 const authUrl = `${import.meta.env.VITE_API_URL}/auth/local`;
 
 export function getJWT(svelteFetch: SvelteFetch, freshen?: boolean): Promise<string> {
