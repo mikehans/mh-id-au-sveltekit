@@ -29,11 +29,11 @@
 		}
 
 		h2 {
-			font-size: 1.8rem;
+			font-size: 1.75rem;
 		}
 
 		h3 {
-			font-size: 1.5rem;
+			font-size: 1.25rem;
 		}
 
 		h4{
@@ -46,6 +46,9 @@
 
 		h6{
 			font-size: 1rem;
+		}
+		a, a:hover, a:visited, a:active {
+			color: inherit;
 		}
 		.container {
 			max-width: 80vw;
