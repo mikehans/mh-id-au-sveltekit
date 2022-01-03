@@ -2,7 +2,8 @@
 interface ImportMetaEnv {
     VITE_API_URL: string,
     VITE_API_USERNAME: string,
-    VITE_API_PASSWORD: string
+    VITE_API_PASSWORD: string,
+    VITE_SESSIONSTORAGE_TOKEN: string
 }
 
 interface MenuItem {
