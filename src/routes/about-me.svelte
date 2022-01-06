@@ -1,30 +1,20 @@
 <script context="module">
-	import { fetchResource } from '$lib/fetchResource';
-	import { markdownToHtml } from '$lib/markdownToHtml';
 	import {browser, dev} from '$app/env';
 
-	// export const hydrate = dev;
-	// export const router = browser;
+	export const hydrate = dev;
+	export const router = browser;
 	export const prerender = true;
 
-	let loadResult;
-
-	// let pageTitle = 'Not set';
 	/** @type {import('@sveltejs/kit').Load} */
-	const aboutMeResourceUrl = `${import.meta.env.VITE_API_URL}/about-me`;
-
-	// console.log(`aboutMeResourceUrl`, aboutMeResourceUrl);
-
 	export async function load({ fetch }) {
-		loadResult = await fetchResource(aboutMeResourceUrl, fetch);
-		console.log(`loadResult`, loadResult)
-		const parsedContent = await markdownToHtml(loadResult.pageContent.content);
+		const loadResult = await fetch("/api/about-me");
+		const json = await loadResult.json();
 
 		return {
 			props: {
-				content: parsedContent,
-				title: loadResult.pageContent.title,
-				menus: loadResult.menus
+				content: json.content,
+				title: json.title,
+				menus: json.menus
 			}
 		};
 	}

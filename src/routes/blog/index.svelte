@@ -1,16 +1,13 @@
 <script context="module">
-	import { fetchResource } from '$lib/fetchResource';
-
 	const BLOG_API_URL = `${import.meta.env.VITE_API_URL}/posts`;
 
 	export async function load({ fetch }) {
-		const response = await fetchResource(BLOG_API_URL, fetch);
-
-		console.log(`response`, response);
+		const response = await fetch("/api/blog");
+		const data = await response.json();
 
 		return {
 			props: {
-				posts: response
+				posts: data.posts
 			}
 		};
 	}

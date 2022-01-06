@@ -1,24 +1,15 @@
 <script lang="ts" context="module">
 	export const prerender = true;
-	import { fetchResource } from '$lib/fetchResource';
-	import { markdownToHtml } from '$lib/markdownToHtml';
-	
-	let loadResult: PageData;
 
-	const homePageUrl = `${import.meta.env.VITE_API_URL}/home-page`;
-
-	export async function load({fetch}){
-		loadResult = await fetchResource(homePageUrl, fetch);
-		// console.log(`loadResult`, loadResult);
-
-		const parsedContent = await markdownToHtml(loadResult.pageContent.content);
-		// console.log(`parsedContent`, parsedContent);
+	export async function load ({fetch}) {
+		const res = await fetch("/api");
+		const data = await res.json();
 
 		return {
 			props: {
-				menus: loadResult.menus,
-				content: parsedContent.value,
-				title: loadResult.pageContent.title
+				title: data.title,
+				content: data.content,
+				menus: data.menus
 			}
 		}
 	}
