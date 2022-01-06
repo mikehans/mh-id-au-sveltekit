@@ -4,12 +4,10 @@
 	export async function load({ fetch }) {
 		const response = await fetch('/api/blog');
 		const data = await response.json();
-		console.log(`data`, data);
 
 		return {
 			props: {
-				posts: data.posts,
-				jwt: data.jwt
+				posts: data.posts
 			}
 		};
 	}
@@ -17,15 +15,8 @@
 
 <script>
 	import Card from '$lib/Card.svelte';
-	import { browser } from '$app/env';
 
 	export let posts;
-	export let jwt;
-	// const jwtKey = `${import.meta.env.VITE_JWT_STORAGE_KEY}`;
-
-	// if (browser) {
-	// 	sessionStorage.setItem(jwtKey, jwt);
-	// }
 </script>
 
 <svelte:head>

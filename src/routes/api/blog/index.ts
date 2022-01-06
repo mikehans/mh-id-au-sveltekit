@@ -13,7 +13,7 @@ export async function get (){
 
     return {
 		body: {
-				posts: response
+			posts: response
 		}
 	};
 }
