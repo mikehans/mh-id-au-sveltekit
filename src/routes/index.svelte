@@ -10,27 +10,18 @@
 			props: {
 				title: data.title,
 				content: data.content,
-				menus: data.menus,
-				jwt: data.jwt
+				menus: data.menus
 			}
 		}
 	}
 </script>
 
 <script lang="ts">
-	import { mainMenu, jwtToken } from '../stores';
-	import { browser } from "$app/env";
+	import { mainMenu } from '../stores';
 
 	export let title: string;
 	export let content: string;
 	export let menus = [];
-	export let jwt: string;
-
-	// const jwtKey = `${import.meta.env.VITE_JWT_STORAGE_KEY}`;
-
-	// if (browser){
-	// 	window.sessionStorage.setItem(jwtKey, jwt);
-	// }
 
 	let siteTitle = `Mike Hansford | ${title}`;
 

@@ -5,19 +5,17 @@ export async function get(): Promise<unknown> {
 	const result = {
 		menus: [],
 		content: '',
-		title: '',
-		jwt: ''
+		title: ''
 	}
 
 	const aboutMeUrl = `${import.meta.env.VITE_API_URL}/about-me`;
 
 	try {
 		const data = await fetchResource(aboutMeUrl);
-		const parsedContent = await markdownToHtml(data.json.pageContent.content);
+		const parsedContent = await markdownToHtml(data.pageContent.content);
 		result.content = parsedContent.value;
-		result.title = data.json.pageContent.title;
-		result.menus = data.json.menus;
-		result.jwt = data.jwt;
+		result.title = data.pageContent.title;
+		result.menus = data.menus;
 	} catch (err){
 		throw new Error(err);
 	}

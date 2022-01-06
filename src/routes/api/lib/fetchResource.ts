@@ -18,7 +18,7 @@ export async function fetchResource(resourceUri: string): Promise<any>{
         if(dataResult.ok){
             const json = await dataResult.json();
             jwtToken.set(jwt);
-            return new Promise(resolve => resolve({json, jwt}));
+            return new Promise(resolve => resolve(json));
         } else {
             jwt = await getJWT(true);
 
@@ -32,7 +32,7 @@ export async function fetchResource(resourceUri: string): Promise<any>{
             if (dataResultRetried.ok){
                 const json = await dataResult.json();
                 jwtToken.set(jwt);
-                return new Promise(resolve => resolve({json, jwt}));
+                return new Promise(resolve => resolve(json));
             } else {
                 throw new Error('Failed auth');
             }

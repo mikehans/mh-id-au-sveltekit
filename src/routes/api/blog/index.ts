@@ -7,15 +7,13 @@ export async function get (){
 
     try {
 		response = await fetchResource(BLOG_API_URL);
-		console.log(`endpoint get response`, response)
 	} catch (err){
 		throw new Error(err);
 	}
 
     return {
 		body: {
-				posts: response.json,
-				jwt: response.jwt
+				posts: response
 		}
 	};
 }
