@@ -1,4 +1,4 @@
-import { fetchResource } from "./lib/fetchResource";
+import { fetchResource } from "../lib/fetchResource";
 
 export async function get (){
 	const BLOG_API_URL = `${import.meta.env.VITE_API_URL}/posts`;

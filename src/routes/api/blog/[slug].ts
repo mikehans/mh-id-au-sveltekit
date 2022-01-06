@@ -1,4 +1,4 @@
-import { fetchResource } from "./lib/fetchResource";
+import { fetchResource } from "../lib/fetchResource";
 
 export async function get({params}){
     console.log(`params`, params)
