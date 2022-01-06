@@ -1,19 +1,15 @@
 <script context="module">
-	import { fetchResource } from '$lib/fetchResource';
     import { markdownToHtml } from '$lib/markdownToHtml';
 
 	export async function load({ params, fetch }) {
-		const POST_URL = `${import.meta.env.VITE_API_URL}/posts/${params.slug}`;
+		const response = await fetch(`/api/${params.slug}`);
+		const json = await response.json();
 
-		const response = await fetchResource(POST_URL, fetch);
-
-		console.log(`response`, response);
-
-        const parsedContent = await markdownToHtml(response.content);
+		const parsedContent = await markdownToHtml(json.content);
 
 		return {
 			props: {
-				post: response,
+				post: json,
                 parsedContent
 			}
 		};
