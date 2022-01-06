@@ -22,11 +22,11 @@
 	export let post;
     export let parsedContent;
 	export let jwt;
-	const jwtKey = `${import.meta.env.VITE_JWT_STORAGE_KEY}`;
+	// const jwtKey = `${import.meta.env.VITE_JWT_STORAGE_KEY}`;
 
-	if (browser){
-		sessionStorage.setItem(jwtKey, jwt);
-	}
+	// if (browser){
+	// 	sessionStorage.setItem(jwtKey, jwt);
+	// }
 </script>
 
 <svelte:head>

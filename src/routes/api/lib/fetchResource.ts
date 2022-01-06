@@ -1,7 +1,12 @@
+import { jwtToken } from "../../../stores";
+
+let jwtValue: string;
+
 export async function fetchResource(resourceUri: string): Promise<any>{
+    jwtToken.subscribe(value => jwtValue = value);
     let jwt: string;
 	try {
-        jwt = await getAuthToken();
+        jwt = await getJWT();
 
         const dataResult = await fetch(resourceUri, {
             headers: {
@@ -12,10 +17,36 @@ export async function fetchResource(resourceUri: string): Promise<any>{
 
         if(dataResult.ok){
             const json = await dataResult.json();
+            jwtToken.set(jwt);
             return new Promise(resolve => resolve({json, jwt}));
+        } else {
+            jwt = await getJWT(true);
+
+            const dataResultRetried = await fetch(resourceUri, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + jwt
+                }
+            });
+
+            if (dataResultRetried.ok){
+                const json = await dataResult.json();
+                jwtToken.set(jwt);
+                return new Promise(resolve => resolve({json, jwt}));
+            } else {
+                throw new Error('Failed auth');
+            }
         }
     } catch (err){
         throw new Error(err);
+    }
+}
+
+async function getJWT(freshen?: boolean): Promise<string>{
+    if (!freshen || jwtValue){
+        return new Promise(resolve => resolve(jwtValue));
+    } else {
+        return await getAuthToken();
     }
 }
 
@@ -35,6 +66,7 @@ async function getAuthToken(): Promise<string>{
 
     if(authResult.ok){
         const json = await authResult.json();
+
         return new Promise(resolve => resolve(json.jwt));
     } else {
         throw new Error("Failed auth");
