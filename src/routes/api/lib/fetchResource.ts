@@ -1,6 +1,7 @@
-export async function fetchResource(resourceUri){
+export async function fetchResource(resourceUri: string): Promise<any>{
+    let jwt: string;
 	try {
-        const jwt = await getAuthToken();
+        jwt = await getAuthToken();
 
         const dataResult = await fetch(resourceUri, {
             headers: {
@@ -10,14 +11,15 @@ export async function fetchResource(resourceUri){
         });
 
         if(dataResult.ok){
-            return await dataResult.json();
+            const json = await dataResult.json();
+            return new Promise(resolve => resolve({json, jwt}));
         }
     } catch (err){
         throw new Error(err);
     }
 }
 
-async function getAuthToken(){
+async function getAuthToken(): Promise<string>{
     const authUrl = `${import.meta.env.VITE_API_URL}/auth/local`;
 
 	const authResult = await fetch(authUrl, {

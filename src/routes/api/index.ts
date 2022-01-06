@@ -5,7 +5,8 @@ export async function get(): any {
 	const result = {
 		menus: [],
 		content: '',
-		title: ''
+		title: '',
+		jwt: ''
 	}
 
 	const homePageUrl = `${import.meta.env.VITE_API_URL}/home-page`;
@@ -14,10 +15,11 @@ export async function get(): any {
 		const data = await fetchResource(homePageUrl);
 
 		console.log(`index page data`, data)
-		const parsedContent = await markdownToHtml(data.pageContent.content);
+		const parsedContent = await markdownToHtml(data.json.pageContent.content);
 		result.content = parsedContent.value;
-		result.title = data.pageContent.title;
-		result.menus = data.menus;
+		result.title = data.json.pageContent.title;
+		result.menus = data.json.menus;
+		result.jwt = data.jwt
 	} catch (err){
 		throw new Error(err);
 	}
@@ -26,7 +28,8 @@ export async function get(): any {
 		body: {
 			content: result.content,
 			title: result.title,
-			menus: result.menus
+			menus: result.menus,
+			jwt: result.jwt
 		}
 	};
 }

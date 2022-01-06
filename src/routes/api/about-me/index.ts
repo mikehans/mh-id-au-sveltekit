@@ -1,21 +1,23 @@
 import { markdownToHtml } from '$lib/markdownToHtml';
-import { fetchResource } from "./lib/fetchResource";
+import { fetchResource } from "../lib/fetchResource";
 
-export async function get(): any {
+export async function get(): Promise<unknown> {
 	const result = {
 		menus: [],
 		content: '',
-		title: ''
+		title: '',
+		jwt: ''
 	}
 
 	const aboutMeUrl = `${import.meta.env.VITE_API_URL}/about-me`;
 
 	try {
 		const data = await fetchResource(aboutMeUrl);
-		const parsedContent = await markdownToHtml(data.pageContent.content);
+		const parsedContent = await markdownToHtml(data.json.pageContent.content);
 		result.content = parsedContent.value;
-		result.title = data.pageContent.title;
-		result.menus = data.menus;
+		result.title = data.json.pageContent.title;
+		result.menus = data.json.menus;
+		result.jwt = data.jwt;
 	} catch (err){
 		throw new Error(err);
 	}
