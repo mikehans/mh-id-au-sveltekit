@@ -17,8 +17,6 @@
 </script>
 
 <script>
-	import { browser } from "$app/env";
-
 	export let post;
     export let parsedContent;
 

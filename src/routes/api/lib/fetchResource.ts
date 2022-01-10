@@ -8,10 +8,12 @@ export async function fetchResource(resourceUri: string): Promise<any>{
 	try {
         jwt = await getJWT();
 
+        // console.log(`jwt try 1`, jwt);
+
         const dataResult = await fetch(resourceUri, {
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: 'Bearer ' + jwt
+                Authorization: `Bearer ${jwt}`
             }
         });
 
@@ -21,11 +23,12 @@ export async function fetchResource(resourceUri: string): Promise<any>{
             return new Promise(resolve => resolve(json));
         } else {
             jwt = await getJWT(true);
+            // console.log(`jwt try 2`, jwt);
 
             const dataResultRetried = await fetch(resourceUri, {
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization: 'Bearer ' + jwt
+                    Authorization: `Bearer ${jwt}`
                 }
             });
 
