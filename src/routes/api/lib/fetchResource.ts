@@ -1,77 +1,97 @@
-import { jwtToken } from "../../../stores";
+// import { jwtToken } from "../../../stores";
 
-let jwtValue: string;
+// let jwtValue: string;
 
 export async function fetchResource(resourceUri: string): Promise<any>{
-    jwtToken.subscribe(value => jwtValue = value);
-    let jwt: string;
-	try {
-        jwt = await getJWT();
-
-        // console.log(`jwt try 1`, jwt);
-
+    console.log(`resourceUri`, resourceUri)
+    try {
         const dataResult = await fetch(resourceUri, {
             headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${jwt}`
+                'Content-Type': 'application/json'
             }
         });
 
         if(dataResult.ok){
             const json = await dataResult.json();
-            jwtToken.set(jwt);
             return new Promise(resolve => resolve(json));
         } else {
-            jwt = await getJWT(true);
-            // console.log(`jwt try 2`, jwt);
-
-            const dataResultRetried = await fetch(resourceUri, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${jwt}`
-                }
-            });
-
-            if (dataResultRetried.ok){
-                const json = await dataResult.json();
-                jwtToken.set(jwt);
-                return new Promise(resolve => resolve(json));
-            } else {
-                throw new Error('Failed auth');
-            }
+            throw new Error(`Error from CMS - ${dataResult.status} (${dataResult.statusText})`);
         }
     } catch (err){
-        throw new Error(err);
+        throw new Error(err)
     }
 }
 
-async function getJWT(freshen?: boolean): Promise<string>{
-    if (!freshen || jwtValue){
-        return new Promise(resolve => resolve(jwtValue));
-    } else {
-        return await getAuthToken();
-    }
-}
+// export async function fetchResourceAuth(resourceUri: string): Promise<any>{
+//     jwtToken.subscribe(value => jwtValue = value);
+//     let jwt: string;
+// 	try {
+//         jwt = await getJWT();
 
-async function getAuthToken(): Promise<string>{
-    const authUrl = `${import.meta.env.VITE_API_URL}/auth/local`;
+//         // console.log(`jwt try 1`, jwt);
 
-	const authResult = await fetch(authUrl, {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify({
-			identifier: `${import.meta.env.VITE_API_USERNAME}`,
-			password: `${import.meta.env.VITE_API_PASSWORD}`
-		})
-	});
+//         const dataResult = await fetch(resourceUri, {
+//             headers: {
+//                 'Content-Type': 'application/json',
+//                 Authorization: `Bearer ${jwt}`
+//             }
+//         });
 
-    if(authResult.ok){
-        const json = await authResult.json();
+//         if(dataResult.ok){
+//             const json = await dataResult.json();
+//             jwtToken.set(jwt);
+//             return new Promise(resolve => resolve(json));
+//         } else {
+//             jwt = await getJWT(true);
+//             // console.log(`jwt try 2`, jwt);
 
-        return new Promise(resolve => resolve(json.jwt));
-    } else {
-        throw new Error("Failed auth");
-    }
-}
+//             const dataResultRetried = await fetch(resourceUri, {
+//                 headers: {
+//                     'Content-Type': 'application/json',
+//                     Authorization: `Bearer ${jwt}`
+//                 }
+//             });
+
+//             if (dataResultRetried.ok){
+//                 const json = await dataResult.json();
+//                 jwtToken.set(jwt);
+//                 return new Promise(resolve => resolve(json));
+//             } else {
+//                 throw new Error('Failed auth');
+//             }
+//         }
+//     } catch (err){
+//         throw new Error(err);
+//     }
+// }
+
+// async function getJWT(freshen?: boolean): Promise<string>{
+//     if (!freshen || jwtValue){
+//         return new Promise(resolve => resolve(jwtValue));
+//     } else {
+//         return await getAuthToken();
+//     }
+// }
+
+// async function getAuthToken(): Promise<string>{
+//     const authUrl = `${import.meta.env.VITE_API_URL}/auth/local`;
+
+// 	const authResult = await fetch(authUrl, {
+// 		method: 'POST',
+// 		headers: {
+// 			'Content-Type': 'application/json'
+// 		},
+// 		body: JSON.stringify({
+// 			identifier: `${import.meta.env.VITE_API_USERNAME}`,
+// 			password: `${import.meta.env.VITE_API_PASSWORD}`
+// 		})
+// 	});
+
+//     if(authResult.ok){
+//         const json = await authResult.json();
+
+//         return new Promise(resolve => resolve(json.jwt));
+//     } else {
+//         throw new Error("Failed auth");
+//     }
+// }
