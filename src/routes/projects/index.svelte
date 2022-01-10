@@ -1,7 +1,7 @@
 <script lang="ts" context="module">
 	export const prerender = true;
 
-	import { fetchResource } from '$lib/fetchResource';
+	// import { fetchResource } from '$lib/fetchResource';
 
 	// import { markdownToHtml } from '../markdownToHtml';
 
@@ -29,6 +29,5 @@
 </svelte:head>
 
 <h1>Projects</h1>
-<!-- {page.pageContent.title} -->
 
-<!-- {@html page.pageContent.content} -->
+<a href="./projects/todo">Todo project</a>
