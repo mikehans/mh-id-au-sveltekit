@@ -7,9 +7,7 @@
 
 	const dispatch = createEventDispatcher();
 
-	function completeTodo(event) {
-		console.log(`From ListItem`, event);
-
+	function completeTodo() {
 		// 10Jan22 this event dispatches before isCompleted updates, hence I'm inverting the logic
 		dispatch('completeTodo', {
 			id: id,

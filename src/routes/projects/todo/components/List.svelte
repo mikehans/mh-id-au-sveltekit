@@ -7,7 +7,6 @@
 <section>
 	<ul>
 		{#each todos as todo}
-			<!-- <li>{todo.task}</li> -->
 			<ListItem {...todo} on:completeTodo />
 		{/each}
 	</ul>

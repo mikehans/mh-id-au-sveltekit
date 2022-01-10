@@ -12,7 +12,6 @@
 	}
 
     function handleComplete(event) {
-        console.log(`event.detail`, event.detail)
         todos = todos.map(t => {
             if (t.id == event.detail.id) {
                 t.isCompleted = event.detail.complete
