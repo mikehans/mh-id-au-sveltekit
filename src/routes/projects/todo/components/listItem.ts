@@ -1,5 +1,5 @@
 export interface ListItem {
-    id: number;
+    id: string;
     task: string;
     isCompleted: boolean;
 }

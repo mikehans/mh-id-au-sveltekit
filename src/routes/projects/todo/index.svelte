@@ -1,15 +1,11 @@
 <script lang="ts">
-	import List from './components/List.svelte';
+    import { browser } from "$app/env";
+    import NewListItemForm from "./components/NewListItemForm.svelte";
+    import List from './components/List.svelte';
 	import type { ListItemPartial } from './components/listItem';
 
-	let todos : Array<ListItemPartial> = [{ id: 1, task: 'Initial task' }];
-
-	function addTodo(task) {
-		const nextIdx = todos.length + 1;
-		todos = [...todos, { id: nextIdx, task, isCompleted: false }];
-		(<HTMLInputElement>document.getElementById('todoItem')).value = '';
-		document.getElementById('todoItem').focus();
-	}
+    const ident = browser? crypto.randomUUID() : 1;
+	let todos : Array<ListItemPartial> = [{ id: ident, task: 'Initial task' }];
 
     function handleComplete(event) {
         todos = todos.map(t => {
@@ -19,18 +15,22 @@
             return t;
         })
     }
+
+    function addNewTodo(event){
+        const ident = browser? crypto.randomUUID() : todos.length + 1;
+
+        todos = [...todos, {id: ident, task: event.detail.task}]
+    }
 </script>
 
 <section>
 	<h1>TODO project</h1>
 
-	<form action="">
-		<label for="todoItem">New Item</label>
-		<input type="text" id="todoItem" name="todoItem" placeholder="Create a new todo here" />
-		<button on:click|preventDefault={() => addTodo(document.getElementById('todoItem').value)}>
-			Add
-		</button>
-	</form>
+    <NewListItemForm on:addTodo={addNewTodo} />
 
 	<List {todos} on:completeTodo={handleComplete} />
+
+    <!-- <div>
+        {JSON.stringify(todos)}
+    </div> -->
 </section>

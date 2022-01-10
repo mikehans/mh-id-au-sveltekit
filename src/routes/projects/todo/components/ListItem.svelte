@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let id = 0;
+	export let id = '';
 	export let task = '';
 	export let isCompleted = false;
 
