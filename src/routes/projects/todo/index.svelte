@@ -1,11 +1,9 @@
 <script lang="ts">
-    import { browser } from "$app/env";
     import NewListItemForm from "./components/NewListItemForm.svelte";
     import List from './components/List.svelte';
 	import type { ListItemPartial } from './components/listItem';
 
-    const ident = browser? crypto.randomUUID() : 1;
-	let todos : Array<ListItemPartial> = [{ id: ident, task: 'Initial task' }];
+	let todos : Array<ListItemPartial> = [];
 
     function handleComplete(event) {
         todos = todos.map(t => {
@@ -17,7 +15,7 @@
     }
 
     function addNewTodo(event){
-        const ident = browser? crypto.randomUUID() : todos.length + 1;
+        const ident = crypto.randomUUID();
 
         todos = [...todos, {id: ident, task: event.detail.task}]
     }
