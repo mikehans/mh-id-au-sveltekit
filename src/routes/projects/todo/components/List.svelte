@@ -15,5 +15,6 @@
 <style>
 	ul {
 		width: 30vw;
+		padding-left: 0;
 	}
 </style>
