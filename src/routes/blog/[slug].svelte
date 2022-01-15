@@ -1,19 +1,19 @@
 <script context="module">
     import { markdownToHtml } from '$lib/markdownToHtml';
 
-	// export async function load({ params, fetch }) {
-	// 	const response = await fetch(`/api/blog/${params.slug}`);
-	// 	const json = await response.json();
+	export async function load({ params, fetch }) {
+		const response = await fetch(`/api/blog/${params.slug}`);
+		const json = await response.json();
 
-	// 	const parsedContent = await markdownToHtml(json.content);
+		const parsedContent = await markdownToHtml(json.content);
 
-	// 	return {
-	// 		props: {
-	// 			post: json,
-    //             parsedContent
-	// 		}
-	// 	};
-	// }
+		return {
+			props: {
+				post: json,
+                parsedContent
+			}
+		};
+	}
 </script>
 
 <script>
