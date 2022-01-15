@@ -2,7 +2,6 @@ import dotenv from "dotenv";
 
 export async function fetchResource(resourceUri: string) : Promise<unknown>{
     dotenv.config();
-    console.log(`process.env`, process.env)
 
     const dataResult = await fetch(resourceUri, {
         headers: {
