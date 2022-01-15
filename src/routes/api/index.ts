@@ -7,7 +7,7 @@ type PageDataContent = {
 	content: string
 }
 
-type PageData = {
+type PageContentWrapper = {
 	id?: number,
 	published_at?: string,
 	created_at?: string,
@@ -16,6 +16,11 @@ type PageData = {
 	SEO?: string | null,
 	menus?: Array<Menu>,
 	jwt?:string
+}
+
+type PageData = {
+	content: PageContentWrapper
+	jwt?: string
 }
 
 export async function get(): any {
@@ -29,13 +34,13 @@ export async function get(): any {
 	const homePageUrl = `${process.env.API_URL}/home-page`;
 
 	try {
-		const data: PageData = await fetchResourceAuth(homePageUrl);
+		const data: any = await fetchResourceAuth(homePageUrl);
 
-		// console.log(`index page data`, data);
-		const parsedContent = await markdownToHtml(data.pageContent.content);
+		console.log(`index page data`, data);
+		const parsedContent = await markdownToHtml(data.content.pageContent.content);
 		result.content = parsedContent.value;
-		result.title = data.pageContent.title;
-		result.menus = data.menus;
+		result.title = data.content.pageContent.title;
+		result.menus = data.content.menus;
 		result.jwt = data.jwt;
 	} catch (err) {
 		throw new Error(err);
