@@ -1,7 +1,7 @@
 import { fetchResource, fetchResourceAuth } from "../lib/fetchResource";
-import dotenv from 'dotenv';
+// import dotenv from 'dotenv';
 
-dotenv.config();
+// dotenv.config();
 
 export async function get (){
 	const BLOG_API_URL = `${process.env.API_URL}/posts`;
