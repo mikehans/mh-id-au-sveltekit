@@ -1,4 +1,4 @@
-import { fetchResource, fetchResourceAuth } from "../lib/fetchResource";
+import { fetchResource, fetchResourceAuth } from "./lib/fetchResource";
 import dotenv from 'dotenv';
 
 dotenv.config();

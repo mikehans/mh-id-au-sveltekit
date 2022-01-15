@@ -1,6 +1,4 @@
 <script lang="ts" context="module">
-	export const prerender = true;
-
 	export async function load ({fetch}) {
 		const res = await fetch("/api");
 		const data = await res.json();
@@ -24,6 +22,8 @@
 	export let content: string;
 	export let menus = [];
 	export let jwt: string;
+	export const prerender = true;
+
 
 	let siteTitle = `Mike Hansford | ${title}`;
 

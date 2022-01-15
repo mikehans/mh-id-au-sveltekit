@@ -1,5 +1,5 @@
 import { markdownToHtml } from '$lib/markdownToHtml';
-import { fetchResource, fetchResourceAuth } from "../lib/fetchResource";
+import { fetchResource, fetchResourceAuth } from "./lib/fetchResource";
 
 export async function get(): Promise<unknown> {
 	const result = {

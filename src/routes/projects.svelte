@@ -5,7 +5,7 @@
 
 	// import { markdownToHtml } from '../markdownToHtml';
 
-	const projectsPageUrl = `${import.meta.env.VITE_API_URL}/projects-page`;
+	// const projectsPageUrl = `${import.meta.env.VITE_API_URL}/projects-page`;
 
 	// export async function load({ page, fetch }) {
 	// 	const result = await fetchResource(projectsPageUrl);

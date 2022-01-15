@@ -30,7 +30,7 @@ export async function fetchResourceAuth(resourceUri: string, jwt?: string): Prom
 
 	if (dataResult.ok) {
 		let json = await dataResult.json();
-		console.log(`dataResult json`, json)
+		// console.log(`dataResult json`, json)
 		json = {content: json, jwt: authToken};
 		return new Promise((resolve) => resolve(json));
 	} else if (jwt && jwt.length > 0) {

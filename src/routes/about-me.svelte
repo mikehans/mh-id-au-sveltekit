@@ -1,13 +1,12 @@
 <script context="module">
-	import {browser, dev} from '$app/env';
+	import { browser, dev } from '$app/env';
 
 	export const hydrate = dev;
 	export const router = browser;
-	export const prerender = true;
 
 	/** @type {import('@sveltejs/kit').Load} */
 	export async function load({ fetch }) {
-		const loadResult = await fetch("/api/about-me");
+		const loadResult = await fetch('/api/about-me');
 		const json = await loadResult.json();
 
 		return {
@@ -26,6 +25,8 @@
 	export let title: string;
 	export let content: string;
 	export let menus = [];
+	export const prerender = true;
+
 
 	let siteTitle = `Mike Hansford | ${title}`;
 
