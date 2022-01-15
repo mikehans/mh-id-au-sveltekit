@@ -1,6 +1,6 @@
-import dotenv from 'dotenv';
+// import dotenv from 'dotenv';
 
-dotenv.config();
+// dotenv.config();
 
 export async function fetchResource(resourceUri: string): Promise<unknown> {
 	const dataResult = await fetch(resourceUri, {
