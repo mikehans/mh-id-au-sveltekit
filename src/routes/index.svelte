@@ -4,7 +4,7 @@
 	export async function load ({fetch}) {
 		const res = await fetch("/api");
 		const data = await res.json();
-		// console.log(`data`, data)
+		console.log(`data`, data);
 
 		return {
 			props: {

@@ -5,19 +5,19 @@
 	export const router = browser;
 	export const prerender = true;
 
-	/** @type {import('@sveltejs/kit').Load} */
-	export async function load({ fetch }) {
-		const loadResult = await fetch("/api/about-me");
-		const json = await loadResult.json();
+	// /** @type {import('@sveltejs/kit').Load} */
+	// export async function load({ fetch }) {
+	// 	const loadResult = await fetch("/api/about-me");
+	// 	const json = await loadResult.json();
 
-		return {
-			props: {
-				content: json.content,
-				title: json.title,
-				menus: json.menus
-			}
-		};
-	}
+	// 	return {
+	// 		props: {
+	// 			content: json.content,
+	// 			title: json.title,
+	// 			menus: json.menus
+	// 		}
+	// 	};
+	// }
 </script>
 
 <script lang="ts">

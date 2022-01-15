@@ -1,6 +1,22 @@
 import { markdownToHtml } from '$lib/markdownToHtml';
 import { fetchResource } from './lib/fetchResource';
 
+type PageDataContent = {
+	id: number,
+	title: string,
+	content: string
+}
+
+type PageData = {
+	id?: number,
+	published_at?: string,
+	created_at?: string,
+	updated_at?: string,
+	pageContent?: PageDataContent,
+	SEO?: string | null,
+	menus?: Array<Menu>
+}
+
 export async function get(): any {
 	const result = {
 		menus: [],
@@ -9,10 +25,10 @@ export async function get(): any {
 		jwt: ''
 	};
 
-	const homePageUrl = `${import.meta.env.VITE_API_URL}/home-page`;
+	const homePageUrl = `${process.env.API_URL}/home-page`;
 
 	try {
-		const data = await fetchResource(homePageUrl);
+		const data: PageData = await fetchResource(homePageUrl);
 
 		console.log(`index page data`, data);
 		const parsedContent = await markdownToHtml(data.pageContent.content);

@@ -1,16 +1,16 @@
 <script context="module">
 	const BLOG_API_URL = `${import.meta.env.VITE_API_URL}/posts`;
 
-	export async function load({ fetch }) {
-		const response = await fetch('/api/blog');
-		const data = await response.json();
+	// export async function load({ fetch }) {
+	// 	const response = await fetch('/api/blog');
+	// 	const data = await response.json();
 
-		return {
-			props: {
-				posts: data.posts
-			}
-		};
-	}
+	// 	return {
+	// 		props: {
+	// 			posts: data.posts
+	// 		}
+	// 	};
+	// }
 </script>
 
 <script>
