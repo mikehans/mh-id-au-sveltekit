@@ -13,11 +13,10 @@ export async function get(): Promise<unknown> {
 
 	try {
 		const data = await fetchResourceAuth(aboutMeUrl);
-		console.log(`data`, data)
-		const parsedContent = await markdownToHtml(data.pageContent.content);
+		const parsedContent = await markdownToHtml(data.content.pageContent.content);
 		result.content = parsedContent.value;
-		result.title = data.pageContent.title;
-		result.menus = data.menus;
+		result.title = data.content.pageContent.title;
+		result.menus = data.content.menus;
 		result.jwt = data.jwt;
 	} catch (err){
 		throw new Error(err);
