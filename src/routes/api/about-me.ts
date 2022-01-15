@@ -14,10 +14,14 @@ export async function get(): Promise<unknown> {
 	try {
 		const data = await fetchResourceAuth(aboutMeUrl);
 		const parsedContent = await markdownToHtml(data.content.pageContent.content);
-		result.content = parsedContent.value;
-		result.title = data.content.pageContent.title;
-		result.menus = data.content.menus;
-		result.jwt = data.jwt;
+		// result.content = parsedContent.value;
+		// result.title = data.content.pageContent.title;
+		// result.menus = data.content.menus;
+		// result.jwt = data.jwt;
+		result.content = "test content";
+		result.title = "About Me Title";
+		result.menus = [];
+		result.jwt = "ASDFGHJKL"
 	} catch (err){
 		throw new Error(err);
 	}
