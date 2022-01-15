@@ -30,7 +30,8 @@ export async function fetchResourceAuth(resourceUri: string, jwt?: string): Prom
 
 	if (dataResult.ok) {
 		let json = await dataResult.json();
-		json = {...json, jwt: authToken};
+		console.log(`dataResult json`, json)
+		json = {content: json, jwt: authToken};
 		return new Promise((resolve) => resolve(json));
 	} else if (jwt && jwt.length > 0) {
         // in case there was a JWT, replace it and retry
@@ -43,7 +44,7 @@ export async function fetchResourceAuth(resourceUri: string, jwt?: string): Prom
 		});
 		if (dataResult2.ok) {
 			let json = await dataResult.json();
-			json = {...json, jwt: newToken};
+			json = {content: json, jwt: authToken};
 			return new Promise((resolve) => resolve(json));
 		} else {
 			return new Promise((resolve, reject) => reject('Could not resolve endpoint'));
