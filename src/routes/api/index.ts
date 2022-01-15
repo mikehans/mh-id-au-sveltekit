@@ -1,5 +1,5 @@
 import { markdownToHtml } from '$lib/markdownToHtml';
-import { fetchResource } from './lib/fetchResource';
+import { fetchResource, fetchResourceAuth } from './lib/fetchResource';
 
 type PageDataContent = {
 	id: number,
@@ -14,7 +14,8 @@ type PageData = {
 	updated_at?: string,
 	pageContent?: PageDataContent,
 	SEO?: string | null,
-	menus?: Array<Menu>
+	menus?: Array<Menu>,
+	jwt?:string
 }
 
 export async function get(): any {
@@ -28,13 +29,14 @@ export async function get(): any {
 	const homePageUrl = `${process.env.API_URL}/home-page`;
 
 	try {
-		const data: PageData = await fetchResource(homePageUrl);
+		const data: PageData = await fetchResourceAuth(homePageUrl);
 
-		console.log(`index page data`, data);
+		// console.log(`index page data`, data);
 		const parsedContent = await markdownToHtml(data.pageContent.content);
 		result.content = parsedContent.value;
 		result.title = data.pageContent.title;
 		result.menus = data.menus;
+		result.jwt = data.jwt;
 	} catch (err) {
 		throw new Error(err);
 	}
@@ -43,7 +45,8 @@ export async function get(): any {
 		body: {
 			content: result.content,
 			title: result.title,
-			menus: result.menus
+			menus: result.menus,
+			jwt: result.jwt
 		}
 	};
 }
