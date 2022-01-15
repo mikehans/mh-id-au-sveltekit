@@ -6,8 +6,8 @@ I'm using my website as a project for learning Sveltekit.
 You need an .env file with the following content:
 
 ```
-VITE_API_URL="[URL to the Headless CMS API]"
-VITE_API_USERNAME="[user to use to get a JWT]"
-VITE_API_PASSWORD="[user's password]"
+API_URL="[URL to the Headless CMS API]"
+API_USERNAME="[user to use to get a JWT]"
+API_PASSWORD="[user's password]"
 VITE_JWT_STORAGE_KEY="[sessionstorage key to use for the JWT]"
 ```
