@@ -25,7 +25,7 @@
 	export let title: string;
 	export let content: string;
 	export let menus = [];
-	export const prerender = true;
+	// export const prerender = true;
 
 
 	let siteTitle = `Mike Hansford | ${title}`;
