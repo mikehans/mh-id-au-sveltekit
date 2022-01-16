@@ -37,8 +37,9 @@ export async function get(): any {
 		const data: any = await fetchResourceAuth(homePageUrl);
 
 		console.log(`index page data`, data);
-		const parsedContent = await markdownToHtml(data.content.pageContent.content);
-		result.content = parsedContent.value;
+		// const parsedContent = await markdownToHtml(data.content.pageContent.content);
+		// result.content = parsedContent.value;
+		result.content = "test content";
 		result.title = data.content.pageContent.title;
 		result.menus = data.content.menus;
 		result.jwt = data.jwt;
