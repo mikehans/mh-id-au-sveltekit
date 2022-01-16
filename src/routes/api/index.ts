@@ -34,18 +34,18 @@ export async function get(): any {
 	const homePageUrl = `${process.env.API_URL}/home-page`;
 
 	try {
-		// const data: any = await fetchResourceAuth(homePageUrl);
+		const data: any = await fetchResourceAuth(homePageUrl);
 
-		// console.log(`index page data`, data);
-		// const parsedContent = await markdownToHtml(data.content.pageContent.content);
-		// result.content = parsedContent.value;
-		// result.title = data.content.pageContent.title;
-		// result.menus = data.content.menus;
-		// result.jwt = data.jwt;
-		result.content = "Test Home Page";
-		result.title = "TEST ME";
-		result.menus = [];
-		result.jwt = "ZXCBVNM"
+		console.log(`index page data`, data);
+		const parsedContent = await markdownToHtml(data.content.pageContent.content);
+		result.content = parsedContent.value;
+		result.title = data.content.pageContent.title;
+		result.menus = data.content.menus;
+		result.jwt = data.jwt;
+		// result.content = "Test Home Page";
+		// result.title = "TEST ME";
+		// result.menus = [];
+		// result.jwt = "ZXCBVNM"
 	} catch (err) {
 		throw new Error(err);
 	}

@@ -26,6 +26,7 @@
     "rehype-stringify": "^9.0.2",
     "remark": "^14.0.2",
     "remark-rehype": "^10.1.0",
+    "sass": "^1.48.0",
     "svelte": "^3.44.0",
     "svelte-check": "^2.2.6",
     "svelte-preprocess": "^4.9.4",
