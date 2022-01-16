@@ -24,25 +24,25 @@ type PageData = {
 }
 
 export async function get(): any {
-	const result = {
-		menus: [],
-		content: '',
-		title: '',
-		jwt: ''
-	};
+	// const result = {
+	// 	menus: [],
+	// 	content: '',
+	// 	title: '',
+	// 	jwt: ''
+	// };
 
 	const homePageUrl = `${process.env.API_URL}/home-page`;
-
+	let data;
 	try {
-		const data: any = await fetchResourceAuth(homePageUrl);
+		data = await fetchResourceAuth(homePageUrl);
 
 		console.log(`index page data`, data);
 		// const parsedContent = await markdownToHtml(data.content.pageContent.content);
 		// result.content = parsedContent.value;
-		result.content = "test content";
-		result.title = data.content.pageContent.title;
-		result.menus = data.content.menus;
-		result.jwt = data.jwt;
+		// result.content = "test content";
+		// result.title = data.content.pageContent.title;
+		// result.menus = data.content.menus;
+		// result.jwt = data.jwt;
 		// result.content = "Test Home Page";
 		// result.title = "TEST ME";
 		// result.menus = [];
@@ -53,10 +53,11 @@ export async function get(): any {
 
 	return {
 		body: {
-			content: result.content,
-			title: result.title,
-			menus: result.menus,
-			jwt: result.jwt
+			data: data,
+			// content: result.content,
+			// title: result.title,
+			// menus: result.menus,
+			// jwt: result.jwt
 		}
 	};
 }
