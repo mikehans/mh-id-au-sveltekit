@@ -17,5 +17,5 @@
 	export let title;
 </script>
 
-<h1>Oh the agony!</h1>
+<h1>Oh the shame!</h1>
 <h2>{title}</h2>
