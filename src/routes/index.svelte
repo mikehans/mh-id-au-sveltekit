@@ -2,14 +2,15 @@
 	export async function load ({fetch}) {
 		const res = await fetch("/api");
 		const data = await res.json();
-		console.log(`data`, data)
+		console.log(`home page data`, data)
 
 		return {
 			props: {
-				title: data.title,
-				content: data.content,
-				menus: data.menus,
-				jwt: data.jwt
+				// title: data.title,
+				// content: data.content,
+				// menus: data.menus,
+				// jwt: data.jwt,
+				data
 			}
 		}
 	}
@@ -19,10 +20,12 @@
 	import { mainMenu } from '../stores';
 	import { browser } from "$app/env";
 
-	export let title: string;
-	export let content: string;
-	export let menus = [];
-	export let jwt: string;
+	let title: string;
+	let content: string;
+	let menus = [];
+	let jwt: string;
+	export let data;
+	console.log(`data`, data)
 	export const prerender = true;
 
 	let siteTitle = `Mike Hansford | ${title}`;
