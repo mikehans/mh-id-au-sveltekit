@@ -48,7 +48,8 @@ export async function fetchResourceAuth(resourceUri: string, jwt?: string): Prom
 			}
 		});
 		if (dataResult2.ok) {
-			let json = await dataResult.json();
+			// let json = await dataResult.json();
+			let json = {};
 			json = { content: json, jwt: authToken };
 			return new Promise((resolve) => resolve(json));
 		} else {
