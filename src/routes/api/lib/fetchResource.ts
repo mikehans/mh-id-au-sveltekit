@@ -11,8 +11,8 @@ export async function fetchResource(resourceUri: string): Promise<unknown> {
 		});
 
 		if (dataResult.ok) {
-			const json = await dataResult.json();
-			// const json = {};
+			// const json = await dataResult.json();
+			const json = {test: "me"};
 			return new Promise((resolve) => resolve(json));
 		} else {
 			return new Promise((resolve, reject) => reject('Could not resolve endpoint'));
