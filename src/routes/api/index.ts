@@ -34,7 +34,7 @@ export async function get(): any {
 	const homePageUrl = `${process.env.API_URL}/home-page`;
 	let data;
 	try {
-		data = await fetchResourceAuth(homePageUrl);
+		data = await fetchResource(homePageUrl);
 
 		console.log(`index page data`, data);
 		// const parsedContent = await markdownToHtml(data.content.pageContent.content);
