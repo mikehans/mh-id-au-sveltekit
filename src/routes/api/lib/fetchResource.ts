@@ -11,8 +11,8 @@ export async function fetchResource(resourceUri: string): Promise<unknown> {
 		});
 
 		if (dataResult.ok) {
-			// const json = await dataResult.json();
-			const json = {};
+			const json = await dataResult.json();
+			// const json = {};
 			return new Promise((resolve) => resolve(json));
 		} else {
 			return new Promise((resolve, reject) => reject('Could not resolve endpoint'));
@@ -48,8 +48,7 @@ export async function fetchResourceAuth(resourceUri: string, jwt?: string): Prom
 			}
 		});
 		if (dataResult2.ok) {
-			// let json = await dataResult.json();
-			let json = {};
+			let json = await dataResult.json();
 			json = { content: json, jwt: authToken };
 			return new Promise((resolve) => resolve(json));
 		} else {

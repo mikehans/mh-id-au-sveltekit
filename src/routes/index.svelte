@@ -1,8 +1,9 @@
 <script lang="ts" context="module">
 	export async function load ({fetch}) {
 		const res = await fetch("/api");
-		const data = await res.json();
-		console.log(`home page data`, data)
+		console.log(`home page res`, res);
+		// const data = await res.json();
+		// console.log(`home page data`, data)
 
 		return {
 			props: {
@@ -10,7 +11,7 @@
 				// content: data.content,
 				// menus: data.menus,
 				// jwt: data.jwt,
-				data
+				data: {}
 			}
 		}
 	}
